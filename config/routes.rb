@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   end
   # get "sessions/create"
   # get "sessions/destroy"
+
+  resources :support_requests, only: %i[index update]
   resources :users
+  resources :products
 
   scope "(:locale)" do
     resources :orders
@@ -16,7 +19,6 @@ Rails.application.routes.draw do
     root "store#index", as: "store_index"
   end
 
-  resources :products
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

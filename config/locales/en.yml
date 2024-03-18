@@ -77,4 +77,6 @@ en:
       expiration_date: "Expiry"
     po:
       po_number: "PO #"
+  # support_requests:
+  #   support_requests: "Whatev"
   thanks: "Thank you for your order"
