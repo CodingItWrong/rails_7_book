@@ -20,7 +20,7 @@ class ActionDispatch::IntegrationTest
       fill_in :password, with: "secret"
       click_on "Login"
     else
-      post login_url, params: {name: user.name, password: "secret"}
+      post login_url, params: { name: user.name, password: "secret" }
     end
   end
 

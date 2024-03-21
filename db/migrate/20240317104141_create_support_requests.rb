@@ -5,8 +5,8 @@ class CreateSupportRequests < ActiveRecord::Migration[7.0]
       t.string :subject, comment: "Subject of their support email"
       t.text :body, comment: "Body of their support email"
       t.references :order,
-        foreign_key: true,
-        comment: "their most recent order, if applicable"
+                   foreign_key: true,
+                   comment: "their most recent order, if applicable"
       t.timestamps
     end
   end

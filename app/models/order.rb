@@ -3,11 +3,7 @@ require "pago"
 
 class Order < ApplicationRecord
   include ActiveModel::Serializers::Xml
-  enum pay_type: {
-    "Check" => 0,
-    "Credit card" => 1,
-    "Purchase order" => 2
-  }
+  enum pay_type: { "Check" => 0, "Credit card" => 1, "Purchase order" => 2 }
 
   has_many :line_items, dependent: :destroy
 
@@ -41,11 +37,8 @@ class Order < ApplicationRecord
       payment_details[:po_num] = pay_type_params[:po_number]
     end
 
-    payment_result = Pago.make_payment(
-      order_id: id,
-      payment_method:,
-      payment_details:
-    )
+    payment_result =
+      Pago.make_payment(order_id: id, payment_method:, payment_details:)
 
     if payment_result.succeeded?
       OrderMailer.received(self).deliver_later

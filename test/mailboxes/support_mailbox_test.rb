@@ -6,7 +6,7 @@ class SupportMailboxTest < ActionMailbox::TestCase
       to: "support@example.com",
       from: "chris@somewhere.net",
       subject: "Need help",
-      body: "I can't figure out how to check out!!"
+      body: "I can't figure out how to check out!!",
     )
 
     support_request = SupportRequest.last
@@ -23,7 +23,7 @@ class SupportMailboxTest < ActionMailbox::TestCase
       to: "support@example.com",
       from: recent_order.email,
       subject: "Need help",
-      body: "I can't figure out how to check out!!"
+      body: "I can't figure out how to check out!!",
     )
 
     support_request = SupportRequest.last

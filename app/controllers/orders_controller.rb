@@ -33,11 +33,16 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         ChargeOrderJob.perform_later(@order, pay_type_params.to_h)
-        format.html { redirect_to store_index_url(locale: I18n.locale), notice: I18n.t(".thanks") }
+        format.html do
+          redirect_to store_index_url(locale: I18n.locale),
+                      notice: I18n.t(".thanks")
+        end
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @order.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -46,11 +51,16 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to order_url(@order), notice: "Order was successfully updated." }
+        format.html do
+          redirect_to order_url(@order),
+                      notice: "Order was successfully updated."
+        end
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @order.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -60,7 +70,9 @@ class OrdersController < ApplicationController
     @order.destroy
 
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
+      format.html do
+        redirect_to orders_url, notice: "Order was successfully destroyed."
+      end
       format.json { head :no_content }
     end
   end
